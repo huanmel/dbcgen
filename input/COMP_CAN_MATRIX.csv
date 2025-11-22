@@ -1,0 +1,116 @@
+﻿"Msg Name
+报文名称","Msg Type
+报文类型","Msg ID (hex)
+报文标识符","Msg Send Type
+报文发送类型","Msg Cycle Time (ms)
+报文周期时间","Msg Length
+(Byte)
+报文长度","Signal Name
+信号名称","Signal Description
+信号描述","Response Error
+运行运行状态信息位","Start Byte
+起始字节","Start Bit
+起始位","Bit Length (Bit)
+信号长度","Resolution
+精度","Offset
+偏移量","Signal Min. Value (phys)
+物理最小值","Signal Max. Value(phys)
+物理最大值","Signal Min. Value (Hex)
+总线最小值","Signal Max. Value(Hex)
+总线最大值","Unit
+单位","Initial Value(Hex)
+初始值",Invalid Value(Hex)无效值,"Signal Value Description (hex)
+信号值描述","Remark
+备注",ELEC_LV_COMP_Rq,LV_COMP
+,,,,,,,,,,,,,,,,,,,,,,,,
+"ELEC_LV_COMP_Rq 
+(Receive Commands)",Normal,0x18AC6B7F,Cycle,1000,3,,,,,,,,,,,,,,,,,,Tx,Rx
+,,,,,,LV_COMP_cooling_rq,"制冷器功率要求百分比
+Percentage of cooling Power Request",,0,0,7,1,0,0,100,0x0,0x64,%,0x0,0x65~0x7F,"0X0~0X64:valid
+0x65~0x7F:invalid",,,r
+,,,,,,LV_COMP_On_Rq,"COMP使能
+Enable HV-COMP",,1,8,2,1,0,0,3,0x0,0x3,,0x03,0x03,"0x0:COMP_OFF
+0x1:COMP_ON
+0x2:reserved / RES
+0x3:SNA",,,r
+,,,,,,LV_COMP_Reset_Rq,"复位指令
+Reset Request",,1,10,2,1,0,0,3,0x0,0x3,,0x03,0x03,"0x0:No Reset requested / NO_RESET
+0x1:Reset requested / RESET
+0x2:not defined / NDEF
+0x3:SNA",,,r
+,,,,,,LV_COMP_Emg_Off_Rq,"紧急关闭
+Emergency Shutdown",,1,12,1,1,0,0,1,0x0,0x1,,0x0,,"0x0:No Shutdown requested / NO_SHUTDOWN
+0x1:Shutdown requested / SHUTDOWN",,,r
+,,,,,,LV_COMP_Discharge_Rq,"
+放电指令
+Discharge Request",,1,13,2,1,0,0,3,0x0,0x3,,0x03,,"0x0:No Request / NO_DISCHARGE
+0x1:Discharge requested / DIS
+0x2:not defined / NDEF
+0x3:SNA",,,r
+,,,,,,LV_COMP_Temperature_Rq,"温控控制指令
+Temperature control mode Request",,1,15,1,1,0,0,1,0x0,0x1,,0x0,,"0x0:No Request
+0x1:Temperature requested ",,,r
+,,,,,,LV_COMP_Temperature_Set,"目标温控值
+The value of target temperature",,2,16,8,1,-50,-50,204,0x0,0xFE,,0xFF,0xFF,0xFF:invalid,,,r
+,,,,,,,,,,,,,,,,,,,,,,,,
+"LV_COMP_Frm1
+(Feedback info)",Normal,0x18AD8F9A,Cycle,1000,8,,,,,,,,,,,,,,,,,,Rx,Tx
+,,,,,,LV_COMP_HV_voltage,"高电压测量
+High Voltage Measurement",,0,0,8,3,0,0,765,0x0,0xFE,V,0xFF,0xFF,0xFF:invalid,,r,
+,,,,,,LV_COMP_HV_DC_curr,"COMP电流
+Current Draw of HV-COMP",,1,8,8,0.25,0,0,63.5,0x0,0xFE,A,0xFF,0xFF,0xFF:invalid,,r,
+,,,,,,LV_COMP_CoolntTemperature_in,"进水口介质温控
+Medium Temperature at the inlet",,2,16,8,1,-50,-50,204,0x0,0xFE,,0xFF,0xFF,0xFF:invalid,,r,
+,,,,,,LV_COMP_CoolntTemperature_out,"出水口介质温控
+Medium Temperature at the outlet",,3,24,8,1,-50,-50,204,0x0,0xFE,,0xFF,0xFF,0xFF:invalid,,r,
+,,,,,,LV_COMP_InternalPCBTemp,"PCB 温控
+PCB Temperature",,4,32,8,1,-50,-50,204,0x0,0xFE,,0xFF,0xFF,0xFF:invalid,,r,
+,,,,,,LV_COMP_DutyCycle,"COMP占空比
+LV_COMP Duty Cycle",,5,40,8,1,-50,0,100,0x32,0x96,%,0xFF,0xFF,"0x0~0x31:invalid
+0x32~0x96:valid
+0x97~0xFF:invalid",,r,
+,,,,,,LV_COMP_Status,"HV-COMP 运行运行状态信号
+HV-COMP Status signals",,6,48,3,1,0,0,7,0x0,0x7,,0x7,0x7,"0x0:HV COMP off / LV_COMP_OFF
+0x1:HV COMP on / LV_COMP_ON
+0x2~0x7:SNA",,r,
+,,,,,,IGBT_Status,"IGBT运行运行状态信号
+IGBT Status signals",,6,51,3,1,0,0,7,0x0,0x7,,0x0,0x0,"0x0:IGBT okay
+0x1:IGBT short
+0x2~0x7:Resrved",,r,
+,,,,,,LV_COMP_TempSens_Flt,"温控传感器错误
+temperature sensor fault",,6,54,1,1,0,0,1,0x0,0x1,,0x0,0x0,"0x0:No fault
+0x1:fault",,r,
+,,,,,,LV_COMP_TempLim,"过温保护指示
+Over temperature Indicator",,6,55,1,1,0,0,1,0x0,0x1,,0x0,0x0,"0x0:No over temperature detected
+0x1:Over temp. situation active",,r,
+,,,,,,LV_COMP_HV_Voltage_Valid,"电流有效指标
+HV Valid Indicator",,7,56,1,1,0,0,1,0x0,0x1,,0x0,0x0,"0x0:HV valid
+0x1:HV invalid",,r,
+,,,,,,LV_COMP_ExtPwrSup_Flt,"外部电源异常
+External Power Supply failure",,7,57,1,1,0,0,1,0x0,0x1,,0x0,0x0,"0x0:Battery voltage okay
+0x1:Battery voltage off",,r,
+,,,,,,LV_COMP_Off_ShortCurr,"短路检测
+Short- circuit detected",,7,58,1,1,0,0,1,0x0,0x1,,0x0,0x0,"0x0:No short detected
+0x1:Short detected",,r,
+,,,,,,LV_COMP_CurrSens_Flt,"电流传感器错误
+Current sensor fault",,7,59,4,1,0,0,16,0x0,0x0F,,0x0,0x0F,"0x0:Diagnostic pending
+0x1:Diagnostic passed
+0x4:Current sensor fault",,r,
+,,,,,,LV_COMP_CAN_Flt,"通讯错误指示
+CAN communication error Indicator",,7,63,1,1,0,0,1,0x0,0x1,,0x0,0x0,"0x0:No CAN timeout detected
+0x1:CAN timeout active",,r,
+,,,,,,,,,,,,,,,,,,,,,,,,
+"ELEC_LV_COMP_Rq2 
+(Receive command)",Normal,0x18ADD48D,,,8,,,,,,,,,,,,,,,,,,R,S
+,,,,,,LV_COMP_SW_Version_Rq,软件版本請求 Rquest for software version,,0,0,8,1,0,0,255,0x0,0xFF,,0x0,0xFF,0x06: Rquest for software version,,,r
+"LV_COMP_Frm2
+(Feedback info)",Normal,0x18ADF4E4,,,8,,,,,,,,,,,,,,,,,,R,S
+,,,,,,LV_COMP_SW_Version_Rsp,软件版本信息输出 Output software version,,0,0,8,1,0,0,255,0x0,0xFF,,0x0,0xFF,0x06: Respond to request for outputing software version,,r,
+,,,,,,LV_COMP_Master_Max,"主机软件大版本号
+Major version number of the master software",,1,8,8,1,0,0,255,0x0,0xFF,,0x0,0xFF,0x01~0xFE:valid,,r,
+,,,,,,LV_COMP_Master_Min,"主机软件小版本号
+Minor version number of the master software",,2,16,8,1,0,0,255,0x0,0xFF,,0x0,0xFF,0x01~1xFE:valid,,r,
+,,,,,,LV_COMP_Slave_Max,"从机软件大版本号
+Major version number of the slave software",,3,24,8,1,0,0,255,0x0,0xFF,,0x0,0xFF,0x01~0xFE:valid,,r,
+,,,,,,LV_COMP_Slave_Min,"从机软件小版本号
+Minor version number of the slave software",,4,32,8,1,0,0,255,0x0,0xFF,,0x0,0xFF,0x01~1xFE:valid,,r,

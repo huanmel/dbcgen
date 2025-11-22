@@ -1,0 +1,125 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: 
+
+
+BO_ 2561436543 ELEC_LV_COMP_Rq: 3 ECU
+ SG_ LV_COMP_Temperature_Set : 16|8@1+ (1,-50) [-50.0|204.0] "" Vector__XXX
+ SG_ LV_COMP_Temperature_Rq : 15|1@1+ (1,0) [0.0|1.0] "" Vector__XXX
+ SG_ LV_COMP_Discharge_Rq : 13|2@1+ (1,0) [0.0|3.0] "" Vector__XXX
+ SG_ LV_COMP_Emg_Off_Rq : 12|1@1+ (1,0) [0.0|1.0] "" Vector__XXX
+ SG_ LV_COMP_Reset_Rq : 10|2@1+ (1,0) [0.0|3.0] "" Vector__XXX
+ SG_ LV_COMP_On_Rq : 8|2@1+ (1,0) [0.0|3.0] "" Vector__XXX
+ SG_ LV_COMP_cooling_rq : 0|7@1+ (1,0) [0.0|100.0] "%" Vector__XXX
+
+BO_ 2561511322 LV_COMP_Frm1: 8 ECU
+ SG_ LV_COMP_CAN_Flt : 63|1@1+ (1,0) [0.0|1.0] "" Vector__XXX
+ SG_ LV_COMP_CurrSens_Flt : 59|4@1+ (1,0) [0.0|16.0] "" Vector__XXX
+ SG_ LV_COMP_Off_ShortCurr : 58|1@1+ (1,0) [0.0|1.0] "" Vector__XXX
+ SG_ LV_COMP_ExtPwrSup_Flt : 57|1@1+ (1,0) [0.0|1.0] "" Vector__XXX
+ SG_ LV_COMP_HV_Voltage_Valid : 56|1@1+ (1,0) [0.0|1.0] "" Vector__XXX
+ SG_ LV_COMP_TempLim : 55|1@1+ (1,0) [0.0|1.0] "" Vector__XXX
+ SG_ LV_COMP_TempSens_Flt : 54|1@1+ (1,0) [0.0|1.0] "" Vector__XXX
+ SG_ IGBT_Status : 51|3@1+ (1,0) [0.0|7.0] "" Vector__XXX
+ SG_ LV_COMP_Status : 48|3@1+ (1,0) [0.0|7.0] "" Vector__XXX
+ SG_ LV_COMP_DutyCycle : 40|8@1+ (1,-50) [0.0|100.0] "%" Vector__XXX
+ SG_ LV_COMP_InternalPCBTemp : 32|8@1+ (1,-50) [-50.0|204.0] "" Vector__XXX
+ SG_ LV_COMP_CoolntTemperature_out : 24|8@1+ (1,-50) [-50.0|204.0] "" Vector__XXX
+ SG_ LV_COMP_CoolntTemperature_in : 16|8@1+ (1,-50) [-50.0|204.0] "" Vector__XXX
+ SG_ LV_COMP_HV_DC_curr : 8|8@1+ (0.25,0.0) [0.0|63.5] "A" Vector__XXX
+ SG_ LV_COMP_HV_voltage : 0|8@1+ (3,0) [0.0|765.0] "V" Vector__XXX
+
+BO_ 2561528973 ELEC_LV_COMP_Rq2: 8 ECU
+ SG_ LV_COMP_SW_Version_Rq : 0|8@1+ (1,0) [0.0|255.0] "" Vector__XXX
+
+BO_ 2561537252 LV_COMP_Frm2: 8 ECU
+ SG_ LV_COMP_Slave_Min : 32|8@1+ (1,0) [0.0|255.0] "" Vector__XXX
+ SG_ LV_COMP_Slave_Max : 24|8@1+ (1,0) [0.0|255.0] "" Vector__XXX
+ SG_ LV_COMP_Master_Min : 16|8@1+ (1,0) [0.0|255.0] "" Vector__XXX
+ SG_ LV_COMP_Master_Max : 8|8@1+ (1,0) [0.0|255.0] "" Vector__XXX
+ SG_ LV_COMP_SW_Version_Rsp : 0|8@1+ (1,0) [0.0|255.0] "" Vector__XXX
+
+
+
+
+CM_ BO_ 2561436543 "Receive Commands";
+CM_ SG_ 2561436543 LV_COMP_Temperature_Set "The value of target temperature";
+CM_ SG_ 2561436543 LV_COMP_Temperature_Rq "Temperature control mode Request";
+CM_ SG_ 2561436543 LV_COMP_Discharge_Rq "Discharge Request";
+CM_ SG_ 2561436543 LV_COMP_Emg_Off_Rq "Emergency Shutdown";
+CM_ SG_ 2561436543 LV_COMP_Reset_Rq "Reset Request";
+CM_ SG_ 2561436543 LV_COMP_On_Rq "COMP
+Enable HV-COMP";
+CM_ SG_ 2561436543 LV_COMP_cooling_rq "Percentage of cooling Power Request";
+CM_ BO_ 2561511322 "Feedback info";
+CM_ SG_ 2561511322 LV_COMP_CAN_Flt "CAN communication error Indicator";
+CM_ SG_ 2561511322 LV_COMP_CurrSens_Flt "Current sensor fault";
+CM_ SG_ 2561511322 LV_COMP_Off_ShortCurr "Short- circuit detected";
+CM_ SG_ 2561511322 LV_COMP_ExtPwrSup_Flt "External Power Supply failure";
+CM_ SG_ 2561511322 LV_COMP_HV_Voltage_Valid "HV Valid Indicator";
+CM_ SG_ 2561511322 LV_COMP_TempLim "Over temperature Indicator";
+CM_ SG_ 2561511322 LV_COMP_TempSens_Flt "temperature sensor fault";
+CM_ SG_ 2561511322 IGBT_Status "IGBT
+IGBT Status signals";
+CM_ SG_ 2561511322 LV_COMP_Status "HV-COMP 
+HV-COMP Status signals";
+CM_ SG_ 2561511322 LV_COMP_DutyCycle "COMP
+LV_COMP Duty Cycle";
+CM_ SG_ 2561511322 LV_COMP_InternalPCBTemp "PCB 
+PCB Temperature";
+CM_ SG_ 2561511322 LV_COMP_CoolntTemperature_out "Medium Temperature at the outlet";
+CM_ SG_ 2561511322 LV_COMP_CoolntTemperature_in "Medium Temperature at the inlet";
+CM_ SG_ 2561511322 LV_COMP_HV_DC_curr "COMP
+Current Draw of HV-COMP";
+CM_ SG_ 2561511322 LV_COMP_HV_voltage "High Voltage Measurement";
+CM_ BO_ 2561528973 "Receive command";
+CM_ SG_ 2561528973 LV_COMP_SW_Version_Rq "Rquest for software version";
+CM_ BO_ 2561537252 "Feedback info";
+CM_ SG_ 2561537252 LV_COMP_Slave_Min "Minor version number of the slave software";
+CM_ SG_ 2561537252 LV_COMP_Slave_Max "Major version number of the slave software";
+CM_ SG_ 2561537252 LV_COMP_Master_Min "Minor version number of the master software";
+CM_ SG_ 2561537252 LV_COMP_Master_Max "Major version number of the master software";
+CM_ SG_ 2561537252 LV_COMP_SW_Version_Rsp "Output software version";
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 65535;
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_ "GenMsgCycleTime" BO_ 2561436543 1000.0;
+BA_ "GenMsgCycleTime" BO_ 2561511322 1000.0;
+BA_ "GenMsgCycleTime" BO_ 2561528973 100;
+BA_ "GenMsgCycleTime" BO_ 2561537252 100;
+
+
+
+
