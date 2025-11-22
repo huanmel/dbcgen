@@ -8,6 +8,14 @@ import logging
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+
+TYPES_LENGTH={'BOOLEAN': 1,
+            'INTEGER': 8,
+            'FLOAT': 8,
+            'UINT8': 8,
+            'UINT16': 16,
+            '': 8  # Default for unknown types
+            }
 if not logger.handlers: # Avoid adding duplicate handlers if already configured
     console_handler = logging.StreamHandler()
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -18,14 +26,7 @@ def calculate_bit_length(min_val, max_val, data_type):
     """Calculate required bit length based on data type and range"""
     if not min_val or not max_val:
         # Default sizes if range not specified
-        return {
-            'BOOLEAN': 1,
-            'INTEGER': 8,
-            'FLOAT': 8,
-            'UINT8': 8,
-            'UINT16': 16,
-            '': 8  # Default for unknown types
-        }.get(data_type.upper(), 8)
+        return TYPES_LENGTH.get(data_type.upper(), 8)
     
     try:
         min_val = float(min_val)
@@ -52,7 +53,7 @@ def determine_factor(data_type):
         '': 1
     }.get(data_type.upper(), 1)
 
-def generate_dbc_data(df, ECU_NAME="ECU", MSG_ID_START=0):
+def generate_dbc_data(df,types=None, ECU_NAME="ECU", MSG_ID_START=0):
     """Process Sheet3 DataFrame to create DBC-ready data"""
     # Initialize DBC data structure
     dbc_data = {
@@ -70,7 +71,12 @@ def generate_dbc_data(df, ECU_NAME="ECU", MSG_ID_START=0):
         "Unit": [],
         "Receiver": [],
         "Sender": [],
+        "Values": []
     }
+    if types is not None:
+        types = {key: value.upper() for key, value in types.items()}
+        # types['type.name']=df_types['type.name'].str.upper()
+        
     current_start_bit = 0
     current_end_bit=0
     # last_message = None
@@ -88,6 +94,9 @@ def generate_dbc_data(df, ECU_NAME="ECU", MSG_ID_START=0):
         
         # Calculate signal properties
         data_type = str(row['type']).upper()  # or row['element.type.name']
+        # if df_types:
+        #     type_fild=df_types['type.name']==data_type
+        
         min_val = row['min'] if pd.notna(row['min']) else None
         max_val = row['max'] if pd.notna(row['max']) else None
         
@@ -125,6 +134,7 @@ def generate_dbc_data(df, ECU_NAME="ECU", MSG_ID_START=0):
         dbc_data["Unit"].append(row['Unit'] or '')
         dbc_data["Sender"].append(ECU_NAME)  # Default sender
         dbc_data["Receiver"].append(ECU_NAME)  # Default receiver
+        dbc_data["Values"].append(None)  # Default receiver
         
    
         current_start_bit += bit_length  # +1 for padding to next byte
